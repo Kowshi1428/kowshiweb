@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Kowshhhi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="logout-body">
+    <div class="logout-container">
+        <div class="logout-message">
+            <h2>Thank You!</h2>
+            <p>You have been successfully logged out from Kowshhhi.</p>
+            <br>
+            <hr>
+            <p>We hope to see you again soon!</p>
+            
+            <div class="logout-actions">
+                <button onclick="redirectToHome()" class="home-btn">Return to Home</button>
+                <br><br>
+                <a href="login.html">Login Again</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto redirect after 5 seconds
+        let countdown = 5;
+        const countdownElement = document.createElement('p');
+        countdownElement.innerHTML = `Redirecting to home page in <span id="counter">${countdown}</span> seconds...`;
+        document.querySelector('.logout-message').appendChild(countdownElement);
+
+        const timer = setInterval(() => {
+            countdown--;
+            document.getElementById('counter').textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                redirectToHome();
+            }
+        }, 1000);
+
+        function redirectToHome() {
+            console.log('Redirecting to home page...');
+            window.location.href = 'index.html';
+        }
+
+        // Log logout event
+        console.log('User logged out at:', new Date().toISOString());
+    </script>
+</body>
+</html>

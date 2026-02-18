@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Calculator - Kowshhhi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Kowshhhi</h1>
+            <a href="index.html">Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="bill-container">
+        <h2>E-commerce Bill Calculator</h2>
+        
+        <form id="billForm" class="bill-form">
+            <div class="form-group">
+                <label for="productPrice">Product Price ($):</label>
+                <input type="number" id="productPrice" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="discount">Discount (%):</label>
+                <input type="number" id="discount" min="0" max="100" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="tax">Tax Rate (%):</label>
+                <input type="number" id="tax" min="0" step="0.01" value="10">
+            </div>
+
+            <div class="form-group">
+                <label>Shipping Method:</label>
+                <br>
+                <input type="radio" id="standard" name="shipping" value="5" checked>
+                <label for="standard">Standard ($5)</label>
+                <br>
+                <input type="radio" id="express" name="shipping" value="15">
+                <label for="express">Express ($15)</label>
+                <br>
+                <input type="radio" id="overnight" name="shipping" value="25">
+                <label for="overnight">Overnight ($25)</label>
+            </div>
+
+            <button type="button" onclick="calculateBill()">Calculate Bill</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
+
+        <div id="billResult" class="bill-result"></div>
+    </div>
+
+    <script>
+        function calculateBill() {
+            // Using let and const as required
+            const productPrice = parseFloat(document.getElementById('productPrice').value) || 0;
+            const quantity = parseInt(document.getElementById('quantity').value) || 0;
+            const discountPercent = parseFloat(document.getElementById('discount').value) || 0;
+            const taxRate = parseFloat(document.getElementById('tax').value) || 0;
+            
+            let shippingCost = 0;
+            const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+            if (selectedShipping) {
+                shippingCost = parseFloat(selectedShipping.value);
+            }
+
+            // Arithmetic operators
+            const subtotal = productPrice * quantity;
+            const discountAmount = subtotal * (discountPercent / 100);
+            const discountedTotal = subtotal - discountAmount;
+            const taxAmount = discountedTotal * (taxRate / 100);
+            const finalTotal = discountedTotal + taxAmount + shippingCost;
+
+            // Comparison operators
+            let loyaltyDiscount = 0;
+            if (finalTotal > 500) {
+                loyaltyDiscount = finalTotal * 0.05; // 5% loyalty discount
+            } else if (finalTotal > 200) {
+                loyaltyDiscount = finalTotal * 0.02; // 2% loyalty discount
+            }
+
+            const grandTotal = finalTotal - loyaltyDiscount;
+
+            // Logical operators
+            const isFreeShipping = (subtotal > 100) && (shippingCost < 10);
+            const isPremiumCustomer = (finalTotal > 500) || (quantity > 10);
+
+            // Display results
+            const resultDiv = document.getElementById('billResult');
+            resultDiv.innerHTML = `
+                <h3>Bill Summary</h3>
+                <table class="bill-table">
+                    <tr><td>Product Price:</td><td>$${productPrice.toFixed(2)}</td></tr>
+                    <tr><td>Quantity:</td><td>${quantity}</td></tr>
+                    <tr><td>Subtotal:</td><td>$${subtotal.toFixed(2)}</td></tr>
+                    <tr><td>Discount (${discountPercent}%):</td><td>-$${discountAmount.toFixed(2)}</td></tr>
+                    <tr><td>After Discount:</td><td>$${discountedTotal.toFixed(2)}</td></tr>
+                    <tr><td>Tax (${taxRate}%):</td><td>$${taxAmount.toFixed(2)}</td></tr>
+                    <tr><td>Shipping:</td><td>$${shippingCost.toFixed(2)}</td></tr>
+                    <tr><td>Loyalty Discount:</td><td>-$${loyaltyDiscount.toFixed(2)}</td></tr>
+                    <tr class="total-row"><td><strong>Grand Total:</strong></td><td><strong>$${grandTotal.toFixed(2)}</strong></td></tr>
+                </table>
+                <div class="customer-status">
+                    <p>Free Shipping Eligible: ${isFreeShipping ? 'Yes' : 'No'}</p>
+                    <p>Premium Customer: ${isPremiumCustomer ? 'Yes' : 'No'}</p>
+                </div>
+            `;
+
+            // Console output as required
+            console.log('Bill Calculation Results:');
+            console.log('========================');
+            console.log(`Subtotal: $${subtotal.toFixed(2)}`);
+            console.log(`Discount: $${discountAmount.toFixed(2)}`);
+            console.log(`Tax: $${taxAmount.toFixed(2)}`);
+            console.log(`Shipping: $${shippingCost.toFixed(2)}`);
+            console.log(`Loyalty Discount: $${loyaltyDiscount.toFixed(2)}`);
+            console.log(`Grand Total: $${grandTotal.toFixed(2)}`);
+            console.log(`Free Shipping: ${isFreeShipping}`);
+            console.log(`Premium Customer: ${isPremiumCustomer}`);
+        }
+
+        function clearForm() {
+            document.getElementById('billForm').reset();
+            document.getElementById('billResult').innerHTML = '';
+            console.log('Form cleared');
+        }
+    </script>
+</body>
+</html>

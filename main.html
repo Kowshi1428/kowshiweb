@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kowshhhi - E-commerce Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Kowshhhi</h1>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="bill.html">Bill Calculator</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="hero-section">
+            <h1>Welcome to Kowshhhi</h1>
+            <p>Your trusted e-commerce platform for quality products</p>
+            <button id="colorBtn" onclick="changeBackground()">Change Background</button>
+            <button id="textColorBtn" onclick="changeTextColor()">Change Text Color</button>
+        </div>
+
+        <!-- Product Section -->
+        <div id="products" class="products-section">
+            <h2>Our Products</h2>
+            
+            <!-- Product Table -->
+            <table class="product-table">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </tr>
+                <tr>
+                    <td>Smartphone</td>
+                    <td>$599<sup>99</sup></td>
+                    <td>Latest technology smartphone with advanced features</td>
+                    <td><img src="https://via.placeholder.com/100x80" alt="Smartphone" class="product-img"></td>
+                </tr>
+                <tr>
+                    <td>Laptop</td>
+                    <td>$999<sup>99</sup></td>
+                    <td>High-performance laptop for work and gaming</td>
+                    <td><img src="https://via.placeholder.com/100x80" alt="Laptop" class="product-img"></td>
+                </tr>
+                <tr>
+                    <td>Headphones</td>
+                    <td>$199<sup>99</sup></td>
+                    <td>Premium quality wireless headphones</td>
+                    <td><img src="https://via.placeholder.com/100x80" alt="Headphones" class="product-img"></td>
+                </tr>
+            </table>
+
+            <!-- Product List -->
+            <div class="product-list">
+                <h3>Featured Categories:</h3>
+                <ul>
+                    <li>Electronics</li>
+                    <li>Fashion & Clothing</li>
+                    <li>Home & Garden</li>
+                    <li>Sports & Outdoors</li>
+                </ul>
+                
+                <ol>
+                    <li>Top Rated Products</li>
+                    <li>New Arrivals</li>
+                    <li>Best Sellers</li>
+                    <li>Discounted Items</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>About Kowshhhi</h2>
+            <p>Kowshhhi is a modern e-commerce platform dedicated to providing high-quality products at competitive prices.</p>
+            <p>We use the latest technology including HTML<sub>5</sub>, CSS<sub>3</sub>, and JavaScript to deliver the best shopping experience.</p>
+            <br>
+            <hr>
+            <p><strong>Visit our social media:</strong></p>
+            <a href="#" target="_blank">Facebook</a> | 
+            <a href="#" target="_blank">Twitter</a> | 
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Kowshhhi E-commerce Platform. All rights reserved.</p>
+        <a href="logout.html">Logout</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

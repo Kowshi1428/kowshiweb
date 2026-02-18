@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Kowshhhi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-form-wrapper">
+            <h2>Login to Kowshhhi</h2>
+            
+            <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Account Type:</label>
+                    <br>
+                    <input type="radio" id="customer" name="accountType" value="customer" checked>
+                    <label for="customer">Customer</label>
+                    <br>
+                    <input type="radio" id="admin" name="accountType" value="admin">
+                    <label for="admin">Admin</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Login</button>
+                <br><br>
+                <a href="index.html">Back to Home</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const accountType = document.querySelector('input[name="accountType"]:checked').value;
+            
+            console.log('Login attempt:', {
+                email: email,
+                accountType: accountType,
+                timestamp: new Date()
+            });
+            
+            alert('Login successful! Redirecting to main page...');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
